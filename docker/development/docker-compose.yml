@@ -13,8 +13,10 @@ services:
       - ./db:/data/db
     restart: always
     environment:
+      MYSQL_DATABASE: atsnum
       MYSQL_ROOT_PASSWORD: toor
-
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PWD}"
   adminer:
     image: adminer
     restart: always

@@ -2,13 +2,17 @@ package com.ecam.atsnum.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-public class GenericModel {
+@Data
+@NoArgsConstructor
+public class GenericTableModel {
     @Id
     @NotNull
     private int id;

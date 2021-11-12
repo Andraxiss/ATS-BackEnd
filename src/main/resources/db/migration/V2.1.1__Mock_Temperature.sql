@@ -1,0 +1,21 @@
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (1,'2021-11-12 07:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 08:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 09:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (1,'2021-11-12 10:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 11:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 12:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 13:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 14:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 15:00:00' );
+INSERT INTO releve_information(machine_id,date_releve)  VALUES (2,'2021-11-12 16:00:00' );
+
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (3,15.2,10.3);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (4,15.5,10.5);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (5,15.9,10.8);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (6,16.2,10.5);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (7,16.8,10.3);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (8,16.1,10.1);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (9,15.8,10.5);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (10,13.2,10.3);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (11,12.2,10.2);
+INSERT INTO temperatures(releve_info_id,temperature_sortie,temperature_entree) VALUE (12,15.2,10.1);

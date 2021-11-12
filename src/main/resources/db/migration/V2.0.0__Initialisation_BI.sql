@@ -1,7 +1,7 @@
 CREATE TABLE releve_information (
   releve_information_id int NOT NULL AUTO_INCREMENT,
   machine_id int NOT NULL,
-  date_releve DATETIME,
+  date_releve TIMESTAMP,
   PRIMARY KEY (releve_information_id),
   FOREIGN KEY (machine_id) REFERENCES machine(machine_id)
 );

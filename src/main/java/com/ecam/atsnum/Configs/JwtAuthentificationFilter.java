@@ -38,7 +38,7 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
     private boolean isResourceUrl(String url) {
         boolean isResourceUrl = false;
         List<String> resourceRequests = Arrays.asList("/css/", "/js/", "/scss/", "/fonts/", "/emails/",
-                "/users/authenticate", "/users/register", ".css", ".js", ".scss", ".eot", ".svg", ".ttf", ".woff",
+                "/api/users/authenticate", ".css", ".js", ".scss", ".eot", ".svg", ".ttf", ".woff",
                 ".otf", ".ico", ".png");
         for (String resourceRequest : resourceRequests) {
             if (url.contains(resourceRequest)) {

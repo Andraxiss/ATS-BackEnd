@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.ecam.atsnum.model.DTO.UserDto;
+
 @Data
 @Entity
 @Table(name = "user")

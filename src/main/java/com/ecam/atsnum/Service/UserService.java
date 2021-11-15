@@ -27,13 +27,12 @@ import java.util.Set;
 public class UserService implements IUserService, UserDetailsService {
 
     private IUserRepository userRepository;
-    @Autowired
-    private RoleService roleService;
+    private IRoleService roleService;
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
 
     @Autowired
-    public UserService(IUserRepository _userRepository, RoleService _roleService) {
+    public UserService(IUserRepository _userRepository, IRoleService _roleService) {
         this.userRepository = _userRepository;
         this.roleService = _roleService;
     }
@@ -47,7 +46,7 @@ public class UserService implements IUserService, UserDetailsService {
                 getAuthority(user));
     }
 
-    private Set<SimpleGrantedAuthority> getAuthority(User user) {
+    public Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getRoles().forEach(role -> {
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getNom()));

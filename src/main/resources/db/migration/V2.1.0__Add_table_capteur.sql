@@ -1,0 +1,23 @@
+CREATE TABLE
+IF NOT EXISTS role
+(role_id INT AUTO_INCREMENT PRIMARY KEY,
+ nom VARCHAR
+(255),
+ description VARCHAR
+(255)
+ );
+
+CREATE TABLE
+IF NOT EXISTS user_roles
+(
+ user_id INT NOT NULL,
+ role_id INT NOT NULL,
+ PRIMARY KEY
+(user_id, role_id)
+ );
+
+ALTER TABLE user
+ADD COLUMN email VARCHAR(255),
+ADD COLUMN poste VARCHAR(255);
+
+

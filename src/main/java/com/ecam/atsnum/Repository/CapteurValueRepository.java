@@ -13,17 +13,30 @@ import java.util.List;
 @Repository
 public interface CapteurValueRepository extends JpaRepository<CapteurValue, Integer> {
 
-    public List<CapteurValue> findAllByMachineId(int machineId);
+
 
     @Query(value = "select DISTINCT capteurValue.dateReleve from CapteurValue capteurValue " +
             "WHERE capteurValue.machineId=?1 ORDER BY capteurValue.dateReleve DESC ")
     public LocalDateTime findLastDateReleveByMachineId(int machineId, PageRequest pageRequest);
 
+    @Query(value = "select capteurValue from CapteurValue capteurValue where capteurValue.machineId=?1 AND capteurValue.capteur.capteurId=?2")
+    public List<CapteurValue> findAllByMachineIdAndCapteurId(int machineId, int capteurId);
+
+
     public List<CapteurValue> findAllByMachineIdAndDateReleve(int machineId, LocalDateTime dateReleve);
 
-    public List<CapteurValue> findAllByMachineIdAndDateReleveBefore(int machineId, LocalDateTime endDate);
+    @Query(value = "select capteurValue from CapteurValue capteurValue " +
+            "where capteurValue.machineId=?1 AND capteurValue.capteur.capteurId=?2 " +
+            "and capteurValue.dateReleve<?3")
+    public List<CapteurValue> findAllByMachineIdAndCapteurIdAndDateReleveBefore(int machineId,int capteurId, LocalDateTime endDate);
 
-    public List<CapteurValue> findAllByMachineIdAndDateReleveAfter(int machineId, LocalDateTime startDate);
+    @Query(value = "select capteurValue from CapteurValue capteurValue " +
+            "where capteurValue.machineId=?1 AND capteurValue.capteur.capteurId=?2 " +
+            "and capteurValue.dateReleve>=?3")
+    public List<CapteurValue> findAllByMachineIdAndCapteurIdAndDateReleveAfter(int machineId, int capteurId, LocalDateTime startDate);
 
-    public List<CapteurValue> findAllByMachineIdAndDateReleveBetween(int machineId, LocalDateTime startDate, LocalDateTime endDate);
+    @Query(value = "select capteurValue from CapteurValue capteurValue " +
+            "where capteurValue.machineId=?1 AND capteurValue.capteur.capteurId=?2 " +
+            "and capteurValue.dateReleve>=?3 and capteurValue.dateReleve<?4")
+    public List<CapteurValue> findAllByMachineIdAndCapteurIdAndDateReleveBetween(int machineId, int capteurId, LocalDateTime startDate, LocalDateTime endDate);
 }

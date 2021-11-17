@@ -7,10 +7,12 @@ import com.ecam.atsnum.model.CapteurValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/bi/capteurs_values")
+@RequestMapping(path = "/api/bi/capteurs-values")
 public class CapteurValueController {
 
 
@@ -36,5 +38,10 @@ public class CapteurValueController {
         } else {
             return this.capteurValueService.getAllByMachineId(machineId);
         }
+    }
+
+    @GetMapping(path = "/{machineId}/last-values")
+    public List<CapteurValue> getAllByMachineId(@PathVariable("machineId") int machineId){
+        return this.capteurValueService.getLastDateReleveByMachineId(machineId);
     }
 }

@@ -15,10 +15,11 @@ public class CapteurValueBoolean {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int capteurValueBooleanId;
-    private boolean capteurValueBooleanValue;
+    private boolean capteurBooleanValue;
     private int machineId;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC+1")
     private LocalDateTime dateReleve;
     @ManyToOne
+    @JoinColumn(name = "capteur_id")
     private Capteur capteur;
 }

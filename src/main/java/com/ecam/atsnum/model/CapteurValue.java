@@ -18,8 +18,9 @@ public class CapteurValue {
     private int capteurValueId;
     private double capteurValue;
     private int machineId;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC+1")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateReleve;
     @ManyToOne
+    @JoinColumn(name = "capteur_id")
     private Capteur capteur;
 }

@@ -4,6 +4,7 @@ import com.ecam.atsnum.Repository.CapteurRepository;
 import com.ecam.atsnum.Repository.CapteurValueRepository;
 import com.ecam.atsnum.model.Capteur;
 import com.ecam.atsnum.model.CapteurValue;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,11 @@ public class CapteurValueService {
 
     public List<CapteurValue> getAllByMachineId(int machineId) {
         return this.capteurValueRepository.findAllByMachineId(machineId);
+    }
+
+    public List<CapteurValue> getLastDateReleveByMachineId(int machineId) {
+        LocalDateTime lastReleve = this.capteurValueRepository.findLastDateReleveByMachineId(machineId, PageRequest.of(0,1));
+        return this.capteurValueRepository.findAllByMachineIdAndDateReleve(machineId, lastReleve);
     }
 
     public List<CapteurValue> getAllByMachineIdAndEndTime(int machineId, String endTime) {

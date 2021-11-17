@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS capteur_value (capteur_value_id INT AUTO_INCREMENT,
                                      FOREIGN KEY (machine_id) REFERENCES machine(machine_id));
 
 CREATE TABLE IF NOT EXISTS capteur_value_boolean (capteur_value_boolean_id INT AUTO_INCREMENT,
-                                          capteur_value_boolean_value boolean,
+                                          capteur_boolean_value boolean,
                                           capteur_id int,
                                           machine_id int,
                                           date_releve TIMESTAMP,

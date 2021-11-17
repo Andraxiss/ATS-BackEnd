@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/bi/capteurs_values_boolean")
+@RequestMapping(path = "/api/bi/capteurs-values-boolean")
 public class CapteurValueBooleanController {
 
 
@@ -36,5 +36,10 @@ public class CapteurValueBooleanController {
         } else {
             return this.capteurValueBooleanService.getAllByMachineId(machineId);
         }
+    }
+
+    @GetMapping(path = "/{machineId}/last-values")
+    public List<CapteurValueBoolean> getAllByMachineId(@PathVariable("machineId") int machineId){
+        return this.capteurValueBooleanService.getLastDateReleveByMachineId(machineId);
     }
 }

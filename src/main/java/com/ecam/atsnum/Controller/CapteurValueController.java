@@ -20,7 +20,7 @@ public class CapteurValueController {
     }
 
 
-    @GetMapping(path = "/{machineId}/{capteurId}")
+    @GetMapping(path = "/machines/{machineId}/capteurs/{capteurId}")
     public List<CapteurValue> getAllByMachineId(@PathVariable("machineId") int machineId,
                                                 @PathVariable("capteurId") int capteurId,
                                                 @RequestParam(name = "startTime", required = false) String startTime,
@@ -37,7 +37,7 @@ public class CapteurValueController {
         }
     }
 
-    @GetMapping(path = "/{machineId}/last-values")
+    @GetMapping(path = "/machines/{machineId}/last-values")
     public List<CapteurValue> getAllByMachineId(@PathVariable("machineId") int machineId){
         return this.capteurValueService.getLastReleveByMachineId(machineId);
     }

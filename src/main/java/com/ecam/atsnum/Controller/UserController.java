@@ -65,6 +65,16 @@ public class UserController {
     // return userService.createUser(user);
     // }
 
+    @PutMapping()
+    public User updateUser(@RequestBody User user){
+        return this.userService.updateUser(user);
+    }
+
+    @GetMapping(value="/{id}")
+    public User getUserById(@PathVariable(required=true,name="id") int id){
+        return this.userService.getUserById(id);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/adminping", method = RequestMethod.GET)
     public String adminPing() {

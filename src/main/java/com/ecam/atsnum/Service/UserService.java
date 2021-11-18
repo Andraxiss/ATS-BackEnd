@@ -58,8 +58,18 @@ public class UserService implements IUserService, UserDetailsService {
         return this.userRepository.findByEmail(email);
     }
 
+    public User getUserById(int id){
+        return this.userRepository.findOneByUserId(id);
+    }
+
     public List<User> getAllUser() {
         return this.userRepository.findAll();
+    }
+
+    public User updateUser(User user){
+        User concernedUser = this.userRepository.findOneByUserId(user.getUserId());
+        concernedUser = user;
+        return this.userRepository.save(concernedUser);
     }
 
     public User createUser(UserDto user) {

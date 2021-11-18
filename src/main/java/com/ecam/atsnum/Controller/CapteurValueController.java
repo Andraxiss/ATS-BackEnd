@@ -1,14 +1,10 @@
 package com.ecam.atsnum.Controller;
 
-import com.ecam.atsnum.Service.CapteurService;
 import com.ecam.atsnum.Service.CapteurValueService;
-import com.ecam.atsnum.model.Capteur;
 import com.ecam.atsnum.model.CapteurValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,24 +20,25 @@ public class CapteurValueController {
     }
 
 
-    @GetMapping(path = "/{machineId}")
+    @GetMapping(path = "/machines/{machineId}/capteurs/{capteurId}")
     public List<CapteurValue> getAllByMachineId(@PathVariable("machineId") int machineId,
+                                                @PathVariable("capteurId") int capteurId,
                                                 @RequestParam(name = "startTime", required = false) String startTime,
                                                 @RequestParam(name = "endTime", required = false) String endTime){
 
         if (startTime!=null && endTime!=null){
-            return this.capteurValueService.getAllByMachineIdAndStartTimeAndEndTime(machineId, startTime, endTime);
+            return this.capteurValueService.getAllByMachineIdAndCapteurIdAndStartTimeAndEndTime(machineId,capteurId, startTime, endTime);
         } else if (startTime==null && endTime!=null) {
-            return this.capteurValueService.getAllByMachineIdAndEndTime(machineId, endTime);
+            return this.capteurValueService.getAllByMachineIdAndCapteurIdAndEndTime(machineId,capteurId, endTime);
         } else if (startTime!=null && endTime==null) {
-            return this.capteurValueService.getAllByMachineIdAndStartTime(machineId, startTime);
+            return this.capteurValueService.getAllByMachineIdAndCapteurIdAndStartTime(machineId,capteurId, startTime);
         } else {
-            return this.capteurValueService.getAllByMachineId(machineId);
+            return this.capteurValueService.getAllByMachineIdAndCapteurId(machineId,capteurId);
         }
     }
 
-    @GetMapping(path = "/{machineId}/last-values")
+    @GetMapping(path = "/machines/{machineId}/last-values")
     public List<CapteurValue> getAllByMachineId(@PathVariable("machineId") int machineId){
-        return this.capteurValueService.getLastDateReleveByMachineId(machineId);
+        return this.capteurValueService.getLastReleveByMachineId(machineId);
     }
 }

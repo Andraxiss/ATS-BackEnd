@@ -39,4 +39,7 @@ public interface CapteurValueRepository extends JpaRepository<CapteurValue, Inte
             "where capteurValue.machineId=?1 AND capteurValue.capteur.capteurId=?2 " +
             "and capteurValue.dateReleve>=?3 and capteurValue.dateReleve<?4")
     public List<CapteurValue> findAllByMachineIdAndCapteurIdAndDateReleveBetween(int machineId, int capteurId, LocalDateTime startDate, LocalDateTime endDate);
+
+    @Query(value = "select distinct capteurValue.capteur from CapteurValue capteurValue where capteurValue.machineId=?1")
+    public List<Capteur> findAllCapteurByMachineId(int machineId);
 }

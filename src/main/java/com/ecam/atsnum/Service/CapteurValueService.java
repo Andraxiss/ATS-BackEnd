@@ -1,6 +1,7 @@
 package com.ecam.atsnum.Service;
 
 import com.ecam.atsnum.Repository.CapteurValueRepository;
+import com.ecam.atsnum.model.Capteur;
 import com.ecam.atsnum.model.CapteurValue;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,9 @@ public class CapteurValueService {
 
     public List<CapteurValue> getAllByMachineIdAndCapteurIdAndStartTimeAndEndTime(int machineId, int capteurId, String startTime, String endTime) {
         return this.capteurValueRepository.findAllByMachineIdAndCapteurIdAndDateReleveBetween(machineId,capteurId,LocalDateTime.parse(startTime),LocalDateTime.parse(endTime));
+    }
+
+    public List<Capteur> getAllCapteurByMachineId(int machineId){
+        return this.capteurValueRepository.findAllCapteurByMachineId(machineId);
     }
 }

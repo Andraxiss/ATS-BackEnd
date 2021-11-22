@@ -3,6 +3,7 @@ package com.ecam.atsnum.Service;
 import com.ecam.atsnum.Repository.CapteurValueBooleanRepository;
 import com.ecam.atsnum.model.CapteurValue;
 import com.ecam.atsnum.model.CapteurValueBoolean;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,10 @@ public class CapteurValueBooleanService {
         this.capteurValueBooleanRepository=capteurValueBooleanRepository;
     }
 
-
+    public List<CapteurValueBoolean> getLastDateReleveByMachineId(int machineId) {
+        LocalDateTime lastReleve = this.capteurValueBooleanRepository.findLastDateReleveByMachineId(machineId, PageRequest.of(0,1));
+        return this.capteurValueBooleanRepository.findAllByMachineIdAndDateReleve(machineId, lastReleve);
+    }
     public List<CapteurValueBoolean> getAllByMachineId(int machineId) {
         return this.capteurValueBooleanRepository.findAllByMachineId(machineId);
     }

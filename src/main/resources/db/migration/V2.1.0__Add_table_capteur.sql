@@ -41,6 +41,6 @@ INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('humSeuil_MinB
 INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('intensiteCompresseur','humidite',false);
 INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('debitCompresseur','humidite',false);
 INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('humCombinee','humidite',false);
-INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('manuAuto','autre',false);
-INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('modeAutoIn','autre',false);
+INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('manuAuto','autre',true);
+INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('modeAutoIn','autre',true);
 INSERT INTO capteur(capteur_nom, capteur_type,is_boolean) VALUES ('cmdManuHum','autre',false);

@@ -27,8 +27,7 @@ public class CapteurHistoryDTO {
     this.capteurNom = capteurNom;
   }
 
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime dateReleve;
+   private LocalDateTime dateReleve;
 
   public LocalDateTime getDateReleve() {
     return dateReleve;

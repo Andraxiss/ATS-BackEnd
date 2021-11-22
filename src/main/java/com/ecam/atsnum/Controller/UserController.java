@@ -59,32 +59,19 @@ public class UserController {
         return ResponseEntity.ok(new AuthTokenDto(token, currentUser));
     }
 
-    // @RequestMapping(value = "/register", method = RequestMethod.POST)
-    // public User saveUser(@RequestBody UserDto user) {
-    // System.out.println(user);
-    // return userService.createUser(user);
-    // }
-
     @PutMapping()
     public User updateUser(@RequestBody User user){
         return this.userService.updateUser(user);
     }
 
+    @GetMapping(value="/all")
+    public List<User> getAllUsers(){
+        return this.userService.getAllUser();
+    }
+
     @GetMapping(value="/{id}")
     public User getUserById(@PathVariable(required=true,name="id") int id){
         return this.userService.getUserById(id);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/adminping", method = RequestMethod.GET)
-    public String adminPing() {
-        return "Only Admins Can Read This";
-    }
-
-    @PreAuthorize("hasRole('USER')")
-    @RequestMapping(value = "/userping", method = RequestMethod.GET)
-    public String userPing() {
-        return "Any User Can Read This";
     }
 
 }

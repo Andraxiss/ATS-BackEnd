@@ -1,5 +1,7 @@
 package com.ecam.atsnum.Service;
 
+import java.util.List;
+
 import com.ecam.atsnum.Repository.Interfaces.IRoleRepository;
 import com.ecam.atsnum.Service.Interface.IRoleService;
 import com.ecam.atsnum.model.Role;
@@ -19,6 +21,10 @@ public class RoleService implements IRoleService {
 
     public Role getByName(String name) {
         return this.roleRepository.findRoleByNom(name);
+    }
+
+    public List<Role> getAllRole(){
+        return this.roleRepository.findAll();
     }
     
 }

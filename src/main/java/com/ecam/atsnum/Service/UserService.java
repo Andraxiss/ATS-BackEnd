@@ -80,10 +80,10 @@ public class UserService implements IUserService, UserDetailsService {
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
 
-        if (nUser.getEmail().split("@")[1].equals("admin.edu")) {
-            role = roleService.getByName("ADMIN");
-            roleSet.add(role);
-        }
+        // if (nUser.getEmail().split("@")[1].equals("admin.edu")) {
+        //     role = roleService.getByName("ADMIN");
+        //     roleSet.add(role);
+        // }
 
         nUser.setRoles(roleSet);
         return this.userRepository.save(nUser);

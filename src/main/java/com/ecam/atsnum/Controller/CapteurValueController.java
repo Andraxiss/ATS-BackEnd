@@ -5,9 +5,12 @@ import com.ecam.atsnum.model.Capteur;
 import com.ecam.atsnum.model.CapteurValue;
 import com.ecam.atsnum.model.DTO.CapteurHistoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -25,8 +28,12 @@ public class CapteurValueController {
   public List<CapteurHistoryDTO> getAllByMachineId(
       @PathVariable("machineId") int machineId,
       @PathVariable("capteurId") int capteurId,
-      @RequestParam(name = "startTime", required = false) String startTime,
-      @RequestParam(name = "endTime", required = false) String endTime) {
+      @RequestParam(name = "startTime", required = false)
+          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+          LocalDateTime startTime,
+      @RequestParam(name = "endTime", required = false)
+          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+          LocalDateTime endTime) {
 
     if (startTime != null && endTime != null) {
       List<CapteurValue> capteurValueList =
@@ -56,8 +63,7 @@ public class CapteurValueController {
   }
 
   @GetMapping(path = "/machines/{machineId}/available")
-  public List<Capteur> getAllCapteurByMachineId(
-      @PathVariable("machineId") int machineId) {
+  public List<Capteur> getAllCapteurByMachineId(@PathVariable("machineId") int machineId) {
     return this.capteurValueService.getAllCapteurByMachineId(machineId);
   }
 

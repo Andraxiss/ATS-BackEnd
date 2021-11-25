@@ -64,6 +64,11 @@ public class UserController {
         return this.userService.updateUser(user);
     }
 
+    @PostMapping(value="/create")
+    public User createUser(@RequestBody UserDto user){
+        return this.userService.createUser(user);
+    }
+
     @GetMapping(value="/all")
     public List<User> getAllUsers(){
         return this.userService.getAllUser();

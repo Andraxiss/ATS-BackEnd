@@ -37,4 +37,8 @@ public class CapteurValueBooleanService {
     public List<CapteurValueBoolean> getAllByMachineIdAndStartTimeAndEndTime(int machineId, String startTime, String endTime) {
         return this.capteurValueBooleanRepository.findAllByMachineIdAndDateReleveBetween(machineId,LocalDateTime.parse(startTime),LocalDateTime.parse(endTime));
     }
+
+    public List<CapteurValueBoolean> getByMachineIdAndDateReleve(int machineId, LocalDateTime dateReleve) {
+        return this.capteurValueBooleanRepository.findAllByMachineIdAndDateReleve(machineId, dateReleve);
+    }
 }

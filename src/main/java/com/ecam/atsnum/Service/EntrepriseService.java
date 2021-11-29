@@ -25,7 +25,7 @@ public class EntrepriseService implements IEntrepriseService {
         return this.entrepriseRepository.findAll();
     }
 
-    public Entreprise updateUser(Entreprise entreprise){
+    public Entreprise updateEntreprise(Entreprise entreprise){
         Entreprise concernedEntreprise = this.entrepriseRepository.findOneByEntrepriseId(entreprise.getEntrepriseId());
         concernedEntreprise = entreprise ;
         return this.entrepriseRepository.save(concernedEntreprise);

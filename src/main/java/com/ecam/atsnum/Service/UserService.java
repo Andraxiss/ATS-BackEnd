@@ -1,22 +1,18 @@
 package com.ecam.atsnum.Service;
 
-import com.ecam.atsnum.Repository.MachineRepository;
 import com.ecam.atsnum.Repository.Interfaces.IUserRepository;
 import com.ecam.atsnum.Service.Interface.IRoleService;
 import com.ecam.atsnum.Service.Interface.IUserService;
-import com.ecam.atsnum.model.Machine;
 import com.ecam.atsnum.model.Role;
 import com.ecam.atsnum.model.User;
 import com.ecam.atsnum.model.DTO.UserDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -58,7 +54,7 @@ public class UserService implements IUserService, UserDetailsService {
         return this.userRepository.findByEmail(email);
     }
 
-    public User getUserById(int id){
+    public User getUserById(int id) {
         return this.userRepository.findOneByUserId(id);
     }
 
@@ -66,7 +62,7 @@ public class UserService implements IUserService, UserDetailsService {
         return this.userRepository.findAll();
     }
 
-    public User updateUser(User user){
+    public User updateUser(User user) {
         User concernedUser = this.userRepository.findOneByUserId(user.getUserId());
         concernedUser = user;
         return this.userRepository.save(concernedUser);
@@ -81,8 +77,8 @@ public class UserService implements IUserService, UserDetailsService {
         roleSet.add(role);
 
         // if (nUser.getEmail().split("@")[1].equals("admin.edu")) {
-        //     role = roleService.getByName("ADMIN");
-        //     roleSet.add(role);
+        // role = roleService.getByName("ADMIN");
+        // roleSet.add(role);
         // }
 
         nUser.setRoles(roleSet);

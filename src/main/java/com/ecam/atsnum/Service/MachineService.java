@@ -1,22 +1,41 @@
 package com.ecam.atsnum.Service;
 
-import com.ecam.atsnum.Repository.MachineRepository;
+import com.ecam.atsnum.Repository.Interfaces.IEntrepriseRepository;
+import com.ecam.atsnum.Repository.Interfaces.IMachineRepository;
+import com.ecam.atsnum.Service.Interface.IEntrepriseService;
+import com.ecam.atsnum.Service.Interface.IMachineService;
+import com.ecam.atsnum.model.Entreprise;
 import com.ecam.atsnum.model.Machine;
-import org.springframework.stereotype.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class MachineService {
+public class MachineService implements IMachineService {
 
-    private MachineRepository machineRepository;
+    private IMachineRepository machineRepository;
 
-    public MachineService(MachineRepository machineRepository) {
-        this.machineRepository = machineRepository;
+    @Autowired
+    public MachineService(IMachineRepository _machineRepository) {
+        this.machineRepository = _machineRepository;
     }
 
-    public List<Machine> getAllMachine() {
+    public Machine getMachineById(int id){
+        return this.machineRepository.findOneByMachineId(id);
+    }
+
+    public List<Machine> getAllMachines() {
         return this.machineRepository.findAll();
+    }
+
+    public Machine updateMachine(Machine machine){
+        Machine concernedMachine = this.machineRepository.findOneByMachineId(machine.getMachineId());
+        concernedMachine = machine ;
+        return this.machineRepository.save(concernedMachine);
+    }
+
+    public Machine createMachine(Machine machine) {
+        return this.machineRepository.save(machine);
     }
 }

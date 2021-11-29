@@ -10,7 +10,7 @@ public interface IEntrepriseService {
 
     List<Entreprise> getAllEntreprises();
 
-    Entreprise updateUser(Entreprise entreprise);
+    Entreprise updateEntreprise(Entreprise entreprise);
 
     Entreprise createEntreprise(Entreprise entreprise);
     

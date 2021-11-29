@@ -20,7 +20,7 @@ public interface CapteurValueRepository extends JpaRepository<CapteurValue, Inte
     public LocalDateTime findLastDateReleveByMachineId(int machineId, PageRequest pageRequest);
 
     @Query(value = "select capteurValue from CapteurValue capteurValue " +
-            "WHERE capteurValue.machine.machineId=?1 ORDER BY capteurValue.dateReleve DESC ")
+            "WHERE capteurValue.machine.machineId=?1 AND capteurValue.dateReleve=?2 ORDER BY capteurValue.dateReleve DESC ")
     public List<CapteurValue> findAllByMachineIdAndDateReleve(int machineId, LocalDateTime dateReleve);
 
     @Query(value = "select capteurValue from CapteurValue capteurValue where capteurValue.machine.machineId=?1 " +

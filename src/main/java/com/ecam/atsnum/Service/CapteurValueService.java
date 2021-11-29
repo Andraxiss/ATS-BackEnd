@@ -43,4 +43,9 @@ public class CapteurValueService {
     public List<Capteur> getAllCapteurByMachineId(int machineId){
         return this.capteurValueRepository.findAllCapteurByMachineId(machineId);
     }
+
+    public List<CapteurValue> getByMachineIdAndDateReleve(int machineId, LocalDateTime dateReleve) {
+        System.out.println(dateReleve);
+        return this.capteurValueRepository.findAllByMachineIdAndDateReleve(machineId, dateReleve);
+    }
 }

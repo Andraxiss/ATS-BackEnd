@@ -9,6 +9,8 @@ import com.ecam.atsnum.model.Machine;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 
 @Service
@@ -21,7 +23,7 @@ public class MachineService implements IMachineService {
         this.machineRepository = _machineRepository;
     }
 
-    public Machine getMachineById(int id){
+    public Machine getMachineById(int id) {
         return this.machineRepository.findOneByMachineId(id);
     }
 
@@ -29,9 +31,10 @@ public class MachineService implements IMachineService {
         return this.machineRepository.findAll();
     }
 
-    public Machine updateMachine(Machine machine){
+    public Machine updateMachine(Machine machine) {
         Machine concernedMachine = this.machineRepository.findOneByMachineId(machine.getMachineId());
-        concernedMachine = machine ;
+        machine.setCapteurValues(concernedMachine.getCapteurValues());
+        concernedMachine = machine;
         return this.machineRepository.save(concernedMachine);
     }
 

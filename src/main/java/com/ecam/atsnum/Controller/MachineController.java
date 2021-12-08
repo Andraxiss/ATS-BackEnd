@@ -37,8 +37,8 @@ public class MachineController {
     @GetMapping(value = "/all")
     public List<MachineDto> getMachines() {
         List<Machine> machines = this.machineService.getAllMachines();
-        List<MachineDto> a = MachineDto.machineToDtoList(machines);
-        return a;
+        List<MachineDto> machinesDto = MachineDto.machineToDtoList(machines);
+        return machinesDto;
     }
 
     @PostMapping(value = "/create")
@@ -47,8 +47,10 @@ public class MachineController {
     }
 
     @PutMapping()
-    public Machine updateMachine(Machine machine) {
-        return this.machineService.updateMachine(machine);
+    public MachineDto updateMachine(@RequestBody MachineDto machineDto) {
+        Machine machine = MachineDto.machineFromDto(machineDto);
+        Machine machineUpdated = machineService.updateMachine(machine);
+        return MachineDto.machineToDto(machineUpdated);
     }
 
     @GetMapping(value = "/{id}")

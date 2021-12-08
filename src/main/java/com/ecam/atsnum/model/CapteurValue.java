@@ -1,14 +1,18 @@
 package com.ecam.atsnum.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class CapteurValue {
@@ -19,9 +23,9 @@ public class CapteurValue {
     private int capteurValueId;
     private double capteurValue;
     @ManyToOne()
-	@JoinColumn(name="machine_id")
+    @JoinColumn(name = "machine_id")
     @JsonIgnoreProperties("capteurValues")
-	private Machine machine;
+    private Machine machine;
     private LocalDateTime dateReleve;
     @ManyToOne
     @JoinColumn(name = "capteur_id")

@@ -42,12 +42,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.cors()
-        .configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
         .and()
         .csrf()
         .disable()
         .authorizeRequests()
-        .antMatchers("/api/users/authenticate","/v3/api-docs/**", "/swagger-ui/**", "/endpoint.html")
+        .antMatchers("/api/users/authenticate", "/v3/api-docs/**", "/swagger-ui/**", "/endpoint.html")
         .permitAll()
         .anyRequest()
         .authenticated()

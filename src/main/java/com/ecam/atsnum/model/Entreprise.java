@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @Entity
@@ -22,7 +23,12 @@ public class Entreprise {
     private String adresse;
     private String siret;
 
-    @OneToMany( orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "machine_id")
-	List<Machine> machines;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "entreprise")
+    @JsonIgnoreProperties({ "capteurValues", "entreprise","users" })
+    private List<Machine> machines;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "entreprise")
+    @JsonIgnoreProperties(value="machines", allowSetters = true)
+    private List<User> users;
+
 }

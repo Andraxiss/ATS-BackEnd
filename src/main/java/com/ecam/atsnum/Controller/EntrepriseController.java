@@ -2,6 +2,8 @@ package com.ecam.atsnum.Controller;
 
 import com.ecam.atsnum.Service.Interface.IEntrepriseService;
 import com.ecam.atsnum.model.Entreprise;
+import com.ecam.atsnum.model.DTO.EntrepriseDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -28,8 +30,10 @@ public class EntrepriseController {
     }
 
     @PutMapping()
-    public Entreprise updateEntreprise(Entreprise entreprise) {
-        return this.entrepriseService.updateEntreprise(entreprise);
+    public EntrepriseDto updateEntreprise(@RequestBody EntrepriseDto entrepriseDto) {
+        Entreprise entreprise = EntrepriseDto.entrepriseFromDto(entrepriseDto);
+        Entreprise entrepriseUpdated = entrepriseService.updateEntreprise(entreprise);
+        return EntrepriseDto.entrepriseToDto(entrepriseUpdated);
     }
 
     @GetMapping(value = "/{id}")

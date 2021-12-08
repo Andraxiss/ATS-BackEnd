@@ -10,7 +10,7 @@ services:
     platform: linux/x86_64
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - ./db:/data/db
+      - ./db:/var/lib/mysql
     restart: always
     environment:
       MYSQL_DATABASE: atsnum

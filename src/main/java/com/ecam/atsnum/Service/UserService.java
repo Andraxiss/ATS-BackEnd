@@ -55,7 +55,8 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     public User getUserById(int id) {
-        return this.userRepository.findOneByUserId(id);
+        User user = this.userRepository.findOneByUserId(id);
+        return user;
     }
 
     public List<User> getAllUser() {
@@ -65,6 +66,9 @@ public class UserService implements IUserService, UserDetailsService {
     public User updateUser(User user) {
         User concernedUser = this.userRepository.findOneByUserId(user.getUserId());
         concernedUser = user;
+        if(concernedUser.getEntreprise() == null) {
+            concernedUser.getMachines().clear();
+        }
         return this.userRepository.save(concernedUser);
     }
 

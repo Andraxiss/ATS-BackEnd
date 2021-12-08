@@ -20,7 +20,15 @@ public class Machine {
     private int machineId;
     private String nom;
 
-    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "capteur_value_id")
-    List<CapteurValue> capteurValues;
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "machine")
+    private List<CapteurValue> capteurValues;
+
+    @ManyToOne
+    @JoinColumn(name = "entreprise_id")
+    @JsonIgnoreProperties("machines")
+    private Entreprise entreprise;
+
+    @ManyToMany(mappedBy = "machines")
+    private List<User> users;
+
 }

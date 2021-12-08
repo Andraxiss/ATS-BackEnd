@@ -25,7 +25,7 @@ public class Machine {
 
     @ManyToOne
     @JoinColumn(name = "entreprise_id")
-    @JsonIgnoreProperties("machines")
+    @JsonIgnoreProperties(value="machines", allowSetters = true)
     private Entreprise entreprise;
 
     @ManyToMany(mappedBy = "machines")

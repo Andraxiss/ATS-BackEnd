@@ -16,6 +16,7 @@ public class MachineDto {
     private int machineId;
     private List<CapteurValue> capteurValues;
     private Entreprise entreprise;
+    private List<User> users;
 
     public static MachineDto machineToDto(Machine machine) {
         MachineDto machineDto = new MachineDto();
@@ -23,6 +24,7 @@ public class MachineDto {
         machineDto.setMachineId(machine.getMachineId());
         machineDto.setCapteurValues(machine.getCapteurValues());
         machineDto.setEntreprise(machine.getEntreprise());
+        machineDto.setUsers(machine.getUsers());
         return machineDto;
     }
 
@@ -32,6 +34,7 @@ public class MachineDto {
         machine.setMachineId(machineDto.getMachineId());
         machine.setCapteurValues(machineDto.getCapteurValues());
         machine.setEntreprise(machineDto.getEntreprise());
+        machine.setUsers(machineDto.getUsers());
         return machine;
     }
 
@@ -42,6 +45,7 @@ public class MachineDto {
             machineDto.setNom(machine.getNom());
             machineDto.setMachineId(machine.getMachineId());
             machineDto.setEntreprise(machine.getEntreprise());
+            machineDto.setUsers(machine.getUsers());
             machinesDto.add(machineDto);
         });
         return machinesDto;

@@ -24,7 +24,7 @@ public class Entreprise {
     private String siret;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "entreprise")
-    @JsonIgnoreProperties({ "capteurValues", "entreprise","users" })
+    @JsonIgnoreProperties(value={ "capteurValues", "entreprise","users" }, allowSetters=true)
     private List<Machine> machines;
 
     @OneToMany(orphanRemoval = true, mappedBy = "entreprise")

@@ -5,6 +5,7 @@ import com.ecam.atsnum.model.Entreprise;
 import com.ecam.atsnum.model.DTO.EntrepriseDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class EntrepriseController {
         this.entrepriseService = entrepriseService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/all")
     public List<Entreprise> getEntreprises() {
         return this.entrepriseService.getAllEntreprises();

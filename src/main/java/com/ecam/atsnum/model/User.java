@@ -40,7 +40,7 @@ public class User {
     private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties(value={"users","capteurValues"})
+    @JsonIgnoreProperties(value={"users","capteurValues"}, allowSetters = true)
     @JoinTable(name = "user_machine",
             joinColumns = {
             @JoinColumn(name = "user_id")
@@ -51,7 +51,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name="entreprise_id")
-    @JsonIgnoreProperties("users")
+    @JsonIgnoreProperties(value="users", allowSetters = true)
     private Entreprise entreprise;
 
 }

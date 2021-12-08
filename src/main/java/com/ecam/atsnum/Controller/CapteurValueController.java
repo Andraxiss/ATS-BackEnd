@@ -82,7 +82,7 @@ public class CapteurValueController {
                     new CapteurHistoryDTO(
                             cv.getCapteurValueId(),
                             cv.getCapteurValue(),
-                            cv.getMachineId(),
+                            cv.getMachine().getMachineId(),
                             cv.getCapteur().getCapteurId(),
                             cv.getDateReleve(),
                             cv.getCapteur().getCapteurNom()));

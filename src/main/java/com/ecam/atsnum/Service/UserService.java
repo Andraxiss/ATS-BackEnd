@@ -1,22 +1,18 @@
 package com.ecam.atsnum.Service;
 
-import com.ecam.atsnum.Repository.MachineRepository;
 import com.ecam.atsnum.Repository.Interfaces.IUserRepository;
 import com.ecam.atsnum.Service.Interface.IRoleService;
 import com.ecam.atsnum.Service.Interface.IUserService;
-import com.ecam.atsnum.model.Machine;
 import com.ecam.atsnum.model.Role;
 import com.ecam.atsnum.model.User;
 import com.ecam.atsnum.model.DTO.UserDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -58,8 +54,22 @@ public class UserService implements IUserService, UserDetailsService {
         return this.userRepository.findByEmail(email);
     }
 
+    public User getUserById(int id) {
+        User user = this.userRepository.findOneByUserId(id);
+        return user;
+    }
+
     public List<User> getAllUser() {
         return this.userRepository.findAll();
+    }
+
+    public User updateUser(User user) {
+        User concernedUser = this.userRepository.findOneByUserId(user.getUserId());
+        concernedUser = user;
+        if(concernedUser.getEntreprise() == null) {
+            concernedUser.getMachines().clear();
+        }
+        return this.userRepository.save(concernedUser);
     }
 
     public User createUser(UserDto user) {
@@ -70,10 +80,10 @@ public class UserService implements IUserService, UserDetailsService {
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
 
-        if (nUser.getEmail().split("@")[1].equals("admin.edu")) {
-            role = roleService.getByName("ADMIN");
-            roleSet.add(role);
-        }
+        // if (nUser.getEmail().split("@")[1].equals("admin.edu")) {
+        // role = roleService.getByName("ADMIN");
+        // roleSet.add(role);
+        // }
 
         nUser.setRoles(roleSet);
         return this.userRepository.save(nUser);

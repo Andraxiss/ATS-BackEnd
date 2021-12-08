@@ -4,11 +4,13 @@ import org.springframework.lang.NonNull;
 
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
 
 import com.ecam.atsnum.model.DTO.UserDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @Entity
@@ -28,7 +30,7 @@ public class User {
     private String email;
     private String poste;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = {
             @JoinColumn(name = "user_id")
@@ -36,5 +38,20 @@ public class User {
             inverseJoinColumns = {
             @JoinColumn(name = "role_id") })
     private Set<Role> roles;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(value={"users","capteurValues"}, allowSetters = true)
+    @JoinTable(name = "user_machine",
+            joinColumns = {
+            @JoinColumn(name = "user_id")
+            },
+            inverseJoinColumns = {
+            @JoinColumn(name = "machine_id") })
+    private List<Machine> machines;
+
+    @ManyToOne
+    @JoinColumn(name="entreprise_id")
+    @JsonIgnoreProperties(value="users", allowSetters = true)
+    private Entreprise entreprise;
 
 }

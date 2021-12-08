@@ -17,4 +17,8 @@ public interface IUserService {
     Set<SimpleGrantedAuthority> getAuthority(User user);
 
     User getUserByEmail(String email);
+    
+    User updateUser(User user);
+
+    User getUserById(int id);
 }

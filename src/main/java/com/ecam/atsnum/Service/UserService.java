@@ -81,12 +81,22 @@ public class UserService implements IUserService, UserDetailsService {
         Role role = roleService.getByName("USER");
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
+        nUser.setRoles(roleSet);
+        User userCreated = this.userRepository.save(nUser);
+        String email = userCreated.getEmail();
+        mailService.sendCredentials(email, uncodePassword);
+        return userCreated;
+    }
 
-        // if (nUser.getEmail().split("@")[1].equals("admin.edu")) {
-        // role = roleService.getByName("ADMIN");
-        // roleSet.add(role);
-        // }
-
+    public User createAdmin(User user) {
+        User nUser = user;
+        String uncodePassword = user.getPassword_hash();
+        nUser.setPassword_hash(bcryptEncoder.encode(user.getPassword_hash()));
+        List<Role> role = roleService.getAllRole();
+        Set<Role> roleSet = new HashSet<>();
+        role.forEach(e -> {
+            roleSet.add(e);
+        });
         nUser.setRoles(roleSet);
         User userCreated = this.userRepository.save(nUser);
         String email = userCreated.getEmail();

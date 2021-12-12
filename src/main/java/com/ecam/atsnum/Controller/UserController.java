@@ -39,11 +39,7 @@ public class UserController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> generateToken(@RequestBody UserDto loginUser) throws AuthenticationException {
-        // System.out.println(loginUser);
         User currentUser = userService.getUserByEmail(loginUser.getEmail());
-        if (currentUser == null) {
-            userService.createUser(loginUser);
-        }
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginUser.getEmail(), loginUser.getPassword_hash()));
         Object principal = authentication.getPrincipal();

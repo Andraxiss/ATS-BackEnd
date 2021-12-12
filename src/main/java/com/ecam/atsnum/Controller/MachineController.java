@@ -29,12 +29,6 @@ public class MachineController {
         this.machineService = machineService;
     }
 
-    @GetMapping
-    public List<MachineDto> getMachine() {
-        List<Machine> machines = this.machineService.getAllMachines();
-        return MachineDto.machineToDtoList(machines);
-    }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/all")
     public List<MachineDto> getMachines() {
@@ -42,12 +36,13 @@ public class MachineController {
         List<MachineDto> machinesDto = MachineDto.machineToDtoList(machines);
         return machinesDto;
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/create")
     public Machine createUser(@RequestBody Machine machine) {
         return this.machineService.createMachine(machine);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping()
     public MachineDto updateMachine(@RequestBody MachineDto machineDto) {
         Machine machine = MachineDto.machineFromDto(machineDto);

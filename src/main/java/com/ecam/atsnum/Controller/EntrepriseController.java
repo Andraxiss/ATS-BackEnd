@@ -26,11 +26,13 @@ public class EntrepriseController {
         return this.entrepriseService.getAllEntreprises();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/create")
     public Entreprise createUser(@RequestBody Entreprise entreprise) {
         return this.entrepriseService.createEntreprise(entreprise);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping()
     public EntrepriseDto updateEntreprise(@RequestBody EntrepriseDto entrepriseDto) {
         Entreprise entreprise = EntrepriseDto.entrepriseFromDto(entrepriseDto);

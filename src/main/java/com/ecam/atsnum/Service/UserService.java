@@ -24,13 +24,15 @@ public class UserService implements IUserService, UserDetailsService {
 
     private IUserRepository userRepository;
     private IRoleService roleService;
+    private MailService mailService;
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
 
     @Autowired
-    public UserService(IUserRepository _userRepository, IRoleService _roleService) {
+    public UserService(IUserRepository _userRepository, IRoleService _roleService, MailService _mailService) {
         this.userRepository = _userRepository;
         this.roleService = _roleService;
+        this.mailService = _mailService;
     }
 
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -74,8 +76,8 @@ public class UserService implements IUserService, UserDetailsService {
 
     public User createUser(UserDto user) {
         User nUser = user.getUserFromDto();
+        String uncodePassword = nUser.getPassword_hash();
         nUser.setPassword_hash(bcryptEncoder.encode(user.getPassword_hash()));
-
         Role role = roleService.getByName("USER");
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
@@ -86,6 +88,9 @@ public class UserService implements IUserService, UserDetailsService {
         // }
 
         nUser.setRoles(roleSet);
-        return this.userRepository.save(nUser);
+        User userCreated = this.userRepository.save(nUser);
+        String email = userCreated.getEmail();
+        mailService.sendCredentials(email, uncodePassword);
+        return userCreated;
     }
 }

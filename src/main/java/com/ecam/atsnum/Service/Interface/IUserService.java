@@ -14,6 +14,8 @@ public interface IUserService {
 
     User createUser(UserDto user);
 
+    User createAdmin(User user);
+
     Set<SimpleGrantedAuthority> getAuthority(User user);
 
     User getUserByEmail(String email);

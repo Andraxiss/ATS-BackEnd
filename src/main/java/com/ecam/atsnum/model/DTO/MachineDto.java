@@ -14,7 +14,6 @@ import lombok.Data;
 public class MachineDto {
     private String nom;
     private int machineId;
-    private List<CapteurValue> capteurValues;
     private Entreprise entreprise;
     private List<User> users;
 
@@ -22,7 +21,6 @@ public class MachineDto {
         MachineDto machineDto = new MachineDto();
         machineDto.setNom(machine.getNom());
         machineDto.setMachineId(machine.getMachineId());
-        machineDto.setCapteurValues(machine.getCapteurValues());
         machineDto.setEntreprise(machine.getEntreprise());
         machineDto.setUsers(machine.getUsers());
         return machineDto;
@@ -32,7 +30,6 @@ public class MachineDto {
         Machine machine = new Machine();
         machine.setNom(machineDto.getNom());
         machine.setMachineId(machineDto.getMachineId());
-        machine.setCapteurValues(machineDto.getCapteurValues());
         machine.setEntreprise(machineDto.getEntreprise());
         machine.setUsers(machineDto.getUsers());
         return machine;

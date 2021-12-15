@@ -20,9 +20,6 @@ public class Machine {
     private int machineId;
     private String nom;
 
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "machine")
-    private List<CapteurValue> capteurValues;
-
     @ManyToOne
     @JoinColumn(name = "entreprise_id")
     @JsonIgnoreProperties(value="machines", allowSetters = true)

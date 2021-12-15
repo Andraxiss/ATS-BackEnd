@@ -36,7 +36,6 @@ public class MachineService implements IMachineService {
 
     public Machine updateMachine(Machine machine) {
         Machine concernedMachine = this.machineRepository.findOneByMachineId(machine.getMachineId());
-        machine.setCapteurValues(concernedMachine.getCapteurValues());
         concernedMachine = machine;
         concernedMachine.getUsers().forEach(u -> {
             u.getMachines().removeIf(e -> e.getMachineId() == machine.getMachineId());

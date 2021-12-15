@@ -36,7 +36,9 @@ public class EntrepriseService implements IEntrepriseService {
 
     public Entreprise updateEntreprise(Entreprise entreprise) {
         Entreprise entrepriseToUpdate = this.entrepriseRepository.findOneByEntrepriseId(entreprise.getEntrepriseId());
-        entrepriseToUpdate = entreprise;
+        entrepriseToUpdate.setSiret(entreprise.getSiret());
+        entrepriseToUpdate.setNom(entreprise.getNom());
+        entrepriseToUpdate.setAdresse(entreprise.getAdresse());
         return this.entrepriseRepository.save(entrepriseToUpdate);
     }
 

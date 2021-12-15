@@ -27,7 +27,7 @@ public class Entreprise {
     @JsonIgnoreProperties(value={ "capteurValues", "entreprise","users" }, allowSetters=true)
     private List<Machine> machines;
 
-    @OneToMany(orphanRemoval = true, mappedBy = "entreprise")
+    @OneToMany(mappedBy = "entreprise")
     @JsonIgnoreProperties(value="machines", allowSetters = true)
     private List<User> users;
 
